@@ -1,14 +1,15 @@
-## Towards Real-world Image Dehazing via Adaptive Atmospheric Scattering Model
-
-Xudong Wang, Xi’ai Chen, Weihong Ren, Zhi Han, Yandong Tang <br />
+## Image Recovery and Object Detection Integrated Algorithms for Robots in Harsh Battlefield Environments
+Xudong Wang, Xi’ai Chen, Feifan Wang, Chonglong Xu, Yandong Tang <br />
  <br />
 
 ## Our work 
 
-We propose a semi-supervised image dehazing algorithm with better adaptability in real-world environments. To better suit the actual situation of light inhomogeneity, we proposed a physical image dehazing model with adaptive information correction by combining the global atmospheric light value and transmittance matrix. Meanwhile, by sharing the feature extraction network, a light-weight CNN with only 31kb space occupation is designed to estimate the parameter matrix in an efficient way. The proposed algorithm uses a semi-supervised learning strategy to make full use of synthetic dataset while enhancing the dehazing ability in real-world through an online enhancement learning strategy.
+Battlefield environments are harsher than normal environments, and the images captured by imaging equipment are more prone to degradation. Degraded images seriously affect the analysis of military intelligence and the deployment of intelligent weapons. To address this issue, we propose an image recovery algorithm, which recovers degraded battlefield images based on a physical imaging model and uses a light-weight network to estimate the parameters of physical model. In addition, we propose a strategy to joint training of the image recovery module and the object detection module. Specifically, we integrate the recovery module to the front of YOLO detector to jointly optimize the two modules with detection loss. The image recovery module is lightweight without significant adverse impact on the real-time running of object detection, which can be easily deployed to intelligent unmanned devices such as battlefield robots. The experimental results show that the proposed algorithm achieves better recovery performance in battlefield environments, and the joint training strategy effectively improve the
+accuracy of object detection.
+
 
 <p float="left">
-  &emsp;&emsp; <img src="./f.png" width="900" />
+  &emsp;&emsp; <img src="./f1.png" width="900" />
 </p>
 
 ## Dependencies
@@ -36,9 +37,6 @@ testall.py: Dehazing test for all hazy images dataset.
 
 train.py: Training the dehazing model by supervised learning.
 
-SemiStrain.py: Training the dehazing model by Semi-supervised learning in specific dataset.
-
-
 ## Test
 1. Please put the images to be tested into the ``test_images`` folder. We have prepared the images of the experimental results in the paper.
 2. Please run the ``test.py``, then you will get the following results:
@@ -46,20 +44,7 @@ SemiStrain.py: Training the dehazing model by Semi-supervised learning in specif
   &emsp;&emsp; <img src="./f2.png" width="900" />
 </p>
 
-## Test all
-If you want to test the results on a labeled dataset such as [O-HAZE](https://data.vision.ee.ethz.ch/cvl/ntire18//o-haze/) , you can go through the following procedure:
-1. Please put the dataset to be tested into the ``test0`` folder. You need put the hazy images into the ``test0/hazy`` folder, and put the clear images into the ``test0/gt`` folder. We have prepared the dataset of the experimental results in the paper.
-2. Please run the ``testall.py``, then you will get the dehazing results SSIM, PSNR, and Inference time.
+<p float="left">
+  &emsp;&emsp; <img src="./f3.png" width="900" />
+</p>
 
-## Train
-You can perform supervised learning of the network by following this step.
-1. Please put the dataset into the ``train_data`` folder. You can get the [RESIDE](https://sites.google.com/view/reside-dehaze-datasets) for training.
-2. Please run the ``train.py``, then you will get the dehazing model in ``saved_models`` folder.
-
-## Semi-supervised Train
-You can perform semi-supervised learning of the network by following this step.
-1. Please make sure you have got the supervised learning trained model.
-2. Please put the specific dataset into the ``Sdata/gt_hazy`` folder, which does not require any image with labels. 
-3. Please run the ``SemiStrain.py``, then you will get the Semi-supervised learning dehazing model in ``saved_models`` folder.
-
-## · Other modules will be updated after publication.
